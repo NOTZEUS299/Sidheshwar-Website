@@ -9,6 +9,7 @@ export default function Home() {
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
+  const [modelLoaded, setModelLoaded] = useState(true);
 
   const whoWeAreParallax = useParallax({
     speed: viewportWidth < 751 ? 0 : -25,
@@ -55,11 +56,11 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <section
-        className="w-full h-[746px] min-[751px]:h-[1194px] min-[1001px]:h-[1402px] bg-[url('/assets/gradientThree.jpg')] bg-cover relative min-[751px]:mb-[82px] min-[1001px]:mb-[88px] overflow-hidden"
+        className="w-full h-[746px] min-[751px]:h-[1194px] min-[1001px]:h-[1402px] bg-[url('/assets/gradientTwo.png')] bg-cover relative min-[751px]:mb-[82px] min-[1001px]:mb-[88px] overflow-hidden"
         data-hero-section
       >
         <div
-          className="absolute top-0 left-0 w-full h-[31.3vh] min-[751px]:w-[55%] min-[751px]:h-[726px] min-[1001px]:w-[52%] min-[1001px]:h-[729px] bg-[#5bb69a40] backdrop-blur-[20px] -webkit-backdrop-blur-[20px] rounded-[10px] border-[1px] border-[rgba(255, 255, 255, 0.18)] z-30"
+          className="absolute top-0 left-0 w-full h-[31.3vh] min-[751px]:w-[55%] min-[751px]:h-[726px] min-[1001px]:w-[52%] min-[1001px]:h-[729px] bg-[#5bb69a40] backdrop-blur-[20px] -webkit-backdrop-blur-[20px] rounded-[10px] border-0 border-[rgba(255, 255, 255, 0.18)] z-30"
           data-box-decorative
         ></div>
         <div
@@ -72,7 +73,11 @@ export default function Home() {
           </h1>
         </div>
         <div
-          className="w-full h-[664px] min-[751px]:h-[686px] absolute bottom-0 left-0 z-0"
+          className={`w-full h-[664px] min-[751px]:h-[686px] ${
+            !modelLoaded
+              ? `bg-[#00000000]`
+              : `bg-[url('/assets/interactionLoadingImage.png')]`
+          } bg-center bg-no-repeat absolute bottom-0 left-0 z-0`}
           style={{
             borderLeft: "10px solid #fefcf5",
             borderRight: "10px solid #fefcf5",
@@ -82,27 +87,25 @@ export default function Home() {
           <Spline
             scene="https://prod.spline.design/id7vFoL264ZfOGPl/scene.splinecode"
             className="absolute z-10"
+            onLoad={() => {
+              setTimeout(() => {
+                setModelLoaded(false);
+              }, 1000);
+            }}
           />
         </div>
-        <motion.img
-          initial={{ rotate: 50 }}
-          src="/assets/illustrationTwo.svg"
-          className="absolute left-[-35em] bottom-[-25em] w-[95vh] z-0"
-        />
-        <motion.img
-          initial={{ rotate: 300 }}
-          src="/assets/illustrationTwo.svg"
-          className="absolute right-[-35em] top-[-17em] w-[95vh] z-0"
-        />
       </section>
       <section
         className="w-full h-auto bg-[#fefcf5] min-[751px]:py-[8%] min-[1001px]:py-[9%] px-5 flex justify-between items-start flex-wrap overflow-hidden relative"
-        style={{ borderBottom: "1px solid #232323",borderTop: "1px solid #232323" }}
+        style={{
+          borderBottom: "1px solid #232323",
+          borderTop: "1px solid #232323",
+        }}
         data-about-quote
       >
         <img
-          src="/assets/illustrationTwo.svg"
-          className="absolute left-[10em] top-[-30em] w-[250vh] z-0"
+          src="/assets/illustrationThree.png"
+          className="absolute left-[40em] top-0 h-full z-0 mix-blend-multiply"
         />
         <h2
           ref={whoWeAreParallax?.ref as LegacyRef<HTMLHeadingElement>}
@@ -155,10 +158,10 @@ export default function Home() {
         data-work-id-one
       >
         <div className="w-full h-[40%] relative min-[751px]:h-full overflow-hidden">
-        <img
-          src="/assets/illustrationTwo.svg"
-          className="absolute left-[15em] top-[-30em] w-[250vh] z-0"
-        />
+          <img
+            src="/assets/illustrationTwo.svg"
+            className="absolute left-[15em] top-[-30em] w-[250vh] z-0"
+          />
           <div className="w-full h-full relative flex justify-start items-center min-[751px]:items-end px-5 min-[1001px]:px-10">
             <motion.h3
               ref={featuredWorkOneContentRef}
@@ -432,7 +435,70 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="w-full h-[100vh]"></section>
+      <section className="w-full h-full bg-[#fefcf5]">
+        <div className="w-full h-[440vh] relative">
+          <h2 className="text-center leading-[1.2em] tracking-[0.06em] mt-[48px] text-[7vw] sticky top-14 min-[751px]:top-16 min-[1001px]:top-24">
+            SELECTED CLIENTS
+          </h2>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+            <img
+              className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
+              src="/assets/illustrationThree.png"
+              alt=""
+            />
+            <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-1">CLIENT ONE</h3>
+            </div>
+          </div>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+            <img
+              className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%] -rotate-6"
+              src="/assets/illustrationThree.png"
+              alt=""
+            />
+            <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-2">CLIENT TWO</h3>
+            </div>
+          </div>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+            <img
+              className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
+              src="/assets/illustrationThree.png"
+              alt=""
+            />
+            <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-3">
+                CLIENT THREE
+              </h3>
+            </div>
+          </div>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+            <img
+              className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%] -rotate-6"
+              src="/assets/illustrationThree.png"
+              alt=""
+            />
+            <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-4">
+                CLIENT FOUR
+              </h3>
+            </div>
+          </div>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+            <img
+              className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
+              src="/assets/illustrationThree.png"
+              alt=""
+            />
+            <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-5">
+                CLIENT FIVE
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-[100%] h-[100vh] bg-black"></section>
     </main>
   );
 }
