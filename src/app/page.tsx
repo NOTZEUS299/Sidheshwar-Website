@@ -39,6 +39,12 @@ export default function Home() {
   const featuredWorkFiveContentRef = useRef(null);
   const featuredWorkFiveContentInView = useInView(featuredWorkFiveContentRef);
 
+  const selectedClientsRef = useRef(null);
+  const selectedClientsInView = useInView(selectedClientsRef);
+
+  const emailBannerRef = useRef(null);
+  const emailBannerInView = useInView(emailBannerRef);
+
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
@@ -73,11 +79,10 @@ export default function Home() {
           </h1>
         </div>
         <div
-          className={`w-full h-[664px] min-[751px]:h-[686px] ${
-            !modelLoaded
-              ? `bg-[#00000000]`
-              : `bg-[url('/assets/interactionLoadingImage.png')]`
-          } bg-center bg-no-repeat absolute bottom-0 left-0 z-0`}
+          className={`w-full h-[664px] min-[751px]:h-[686px] ${!modelLoaded
+            ? `bg-[#00000000]`
+            : `bg-[url('/assets/interactionLoadingImage.png')]`
+            } bg-center bg-no-repeat absolute bottom-0 left-0 z-0`}
           style={{
             borderLeft: "10px solid #fefcf5",
             borderRight: "10px solid #fefcf5",
@@ -171,29 +176,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 30
                     : viewportWidth > 1000
-                    ? 0
-                    : 75,
+                      ? 0
+                      : 75,
               }}
               animate={
                 featuredWorkOneContentInView
                   ? {
-                      opacity: 1,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? -70
-                          : viewportWidth > 1000
+                    opacity: 1,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? -70
+                        : viewportWidth > 1000
                           ? -100
                           : -25,
-                    }
+                  }
                   : {
-                      opacity: 0,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? 30
-                          : viewportWidth > 1000
+                    opacity: 0,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? 30
+                        : viewportWidth > 1000
                           ? 0
                           : 75,
-                    }
+                  }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[30px] min-[751px]:w-[55%] min-[1001px]:w-[50%] min-[751px]:-translate-y-[80px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:-translate-y-[70%] leading-[0.9em]"
@@ -206,7 +211,7 @@ export default function Home() {
             style={{ borderTop: "1px solid #232323" }}
           >
             <p className="text-[12px] min-[501px]:text-[16px] min-[751px]:text-[15px] min-[1001px]:text-[18px] w-[80%] min-[1001px]:w-[90%] font-[200] min-[501px]:font-[300]">
-              ​VORHANG - PRINT, IDENTITY
+              VORHANG - PRINT, IDENTITY
             </p>
             <p className="text-[20px] min-[501px]:text-[24px] min-[751px]:text-[23px] min-[1001px]:text-[28px] -translate-y-[2.5px] font-[400] min-[501px]:font-[500] text-[#232323]">
               +
@@ -246,7 +251,7 @@ export default function Home() {
             style={{ borderTop: "1px solid #fefcf5" }}
           >
             <p className="text-[12px] min-[501px]:text-[16px] min-[751px]:text-[15px] min-[1001px]:text-[18px] w-[90%] min-[1001px]:w-[100%] font-[200] min-[501px]:font-[300] text-[#fefcf5]">
-              ​MCA - INTERACTIVE, CAMPAIGN
+              MCA - INTERACTIVE, CAMPAIGN
             </p>
             <p className="text-[20px] min-[501px]:text-[24px] min-[751px]:text-[23px] min-[1001px]:text-[28px] -translate-y-[2.5px] font-[400] min-[501px]:font-[500] text-[#fefcf5]">
               +
@@ -275,29 +280,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 120
                     : viewportWidth > 1000
-                    ? 140
-                    : 80,
+                      ? 140
+                      : 80,
               }}
               animate={
                 featuredWorkThreeContentInView
                   ? {
-                      opacity: 1,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? 20
-                          : viewportWidth > 1000
+                    opacity: 1,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? 20
+                        : viewportWidth > 1000
                           ? 40
                           : -20,
-                    }
+                  }
                   : {
-                      opacity: 0,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? 120
-                          : viewportWidth > 1000
+                    opacity: 0,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? 120
+                        : viewportWidth > 1000
                           ? 140
                           : 80,
-                    }
+                  }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[20px] min-[751px]:w-[70%] min-[751px]:translate-y-[25px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:translate-y-[80%] leading-[0.9em]"
@@ -381,29 +386,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 120
                     : viewportWidth > 1000
-                    ? 140
-                    : 80,
+                      ? 140
+                      : 80,
               }}
               animate={
                 featuredWorkFiveContentInView
                   ? {
-                      opacity: 1,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? 20
-                          : viewportWidth > 1000
+                    opacity: 1,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? 20
+                        : viewportWidth > 1000
                           ? 40
                           : -20,
-                    }
+                  }
                   : {
-                      opacity: 0,
-                      y:
-                        viewportWidth > 750 && viewportWidth < 1001
-                          ? 120
-                          : viewportWidth > 1000
+                    opacity: 0,
+                    y:
+                      viewportWidth > 750 && viewportWidth < 1001
+                        ? 120
+                        : viewportWidth > 1000
                           ? 140
                           : 80,
-                    }
+                  }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[20px] min-[751px]:w-[70%] min-[751px]:translate-y-[25px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:translate-y-[30%] leading-[0.9em]"
@@ -434,13 +439,13 @@ export default function Home() {
             className="w-full"
           />
         </div>
-      </section>
+      </section> 
       <section className="w-full h-full bg-[#fefcf5]">
-        <div className="w-full h-[440vh] relative">
-          <h2 className="text-center leading-[1.2em] tracking-[0.06em] mt-[48px] text-[7vw] sticky top-14 min-[751px]:top-16 min-[1001px]:top-24">
+        <div className="w-full h-[460vh] relative">
+          <motion.h2 ref={selectedClientsRef} className="text-center leading-[1.2em] tracking-[0.06em] mt-[48px] text-[7vw] sticky top-14 min-[751px]:top-16 min-[1001px]:top-20" initial={{ opacity: 0, scale: 0.9 }} animate={emailBannerInView ? { opacity: 0, scale: 0.9 } : selectedClientsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }} transition={{ duration: 0.5 }}>
             SELECTED CLIENTS
-          </h2>
-          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+          </motion.h2>
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
             <img
               className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
               src="/assets/illustrationThree.png"
@@ -450,7 +455,7 @@ export default function Home() {
               <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-1">CLIENT ONE</h3>
             </div>
           </div>
-          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
             <img
               className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%] -rotate-6"
               src="/assets/illustrationThree.png"
@@ -460,7 +465,7 @@ export default function Home() {
               <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-2">CLIENT TWO</h3>
             </div>
           </div>
-          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
             <img
               className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
               src="/assets/illustrationThree.png"
@@ -472,7 +477,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
             <img
               className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%] -rotate-6"
               src="/assets/illustrationThree.png"
@@ -484,7 +489,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-96">
+          <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
             <img
               className="invert w-[65%] min-[751px]:w-[42%] min-[1001px]:w-[30%]"
               src="/assets/illustrationThree.png"
@@ -498,7 +503,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-[100%] h-[100vh] bg-black"></section>
+      <section ref={emailBannerRef} className="w-[100%] h-[100vh] bg-black"></section>
     </main>
   );
 }
