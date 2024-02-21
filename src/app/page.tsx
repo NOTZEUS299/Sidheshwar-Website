@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { LegacyRef, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useParallax } from "react-scroll-parallax";
+import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   const [viewportWidth, setViewportWidth] = useState(
@@ -503,7 +504,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section ref={emailBannerRef} className="w-[100%] h-[100vh] bg-black"></section>
+      <section ref={emailBannerRef} className="w-full h-fit">
+        <Footer/>
+      </section>
     </main>
   );
 }
