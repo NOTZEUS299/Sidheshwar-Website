@@ -10,6 +10,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #fefcf5;
+  overflow-x: hidden;
 }
 @layer utilities {
   .text-balance {
