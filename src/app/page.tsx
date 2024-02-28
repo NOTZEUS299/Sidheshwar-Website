@@ -5,12 +5,14 @@ import { LegacyRef, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useParallax } from "react-scroll-parallax";
 import Footer from "@/components/footer/Footer";
+import { Span } from "next/dist/trace";
 
 export default function Home() {
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
-  const [modelLoaded, setModelLoaded] = useState(true);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [pageScrolled, setPageScrolled] = useState(false)
 
   const whoWeAreParallax = useParallax({
     speed: viewportWidth < 751 ? 0 : -25,
@@ -60,42 +62,248 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(()=>{
+    const handleOnScroll = () => {
+      setPageScrolled(true)
+    }
+    window.addEventListener("scroll", handleOnScroll)
+    return () => {
+      window.removeEventListener("scroll", handleOnScroll)
+    }
+  },[])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
+      <style jsx>
+        {`
+          #hero-text {
+            background: #232323;
+            background-clip: text;
+          }
+          @media (min-width: 751px) {
+            #hero-text {
+              background: linear-gradient(
+                to right,
+                #ffffff 55.5%,
+                #329b89 55.5%
+              );
+              background-clip: text;
+            }
+          }
+          @media (min-width: 1001px) {
+            #hero-text {
+              background: linear-gradient(
+                to right,
+                #ffffff 52.2%,
+                #329b89 52.2%
+              );
+              background-clip: text;
+            }
+          }
+          .progress-loader {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            background: #329b8940;
+            height: 10px;
+            border-radius: 7px;
+          }
+          
+          .progress {
+            width: 1px;
+            height: 10px;
+            border-radius: 7px;
+            background: #329b89;
+            transition: 0.5s;
+            animation: loading_44 1s cubic-bezier(.4,1.01,1,1) infinite;
+          }
+          
+          @keyframes loading_44 {
+            0% {
+              width: 0%;
+            }
+          
+            50% {
+              width: 100%;
+            }
+          
+            100% {
+              width: 0%;
+            }
+          }
+          @-webkit-keyframes ani-mouse {
+            0% {
+            opacity: 1;
+            top: 29%;
+            }
+            15% {
+            opacity: 1;
+            top: 50%;
+            }
+            50% {
+            opacity: 0;
+            top: 50%;
+            }
+            100% {
+            opacity: 0;
+            top: 29%;
+            }
+          }
+          @-moz-keyframes ani-mouse {
+            0% {
+            opacity: 1;
+            top: 29%;
+            }
+            15% {
+            opacity: 1;
+            top: 50%;
+            }
+            50% {
+            opacity: 0;
+            top: 50%;
+            }
+            100% {
+            opacity: 0;
+            top: 29%;
+            }
+          }
+          @keyframes ani-mouse {
+            0% {
+            opacity: 1;
+            top: 29%;
+            }
+            15% {
+            opacity: 1;
+            top: 50%;
+            }
+            50% {
+            opacity: 0;
+            top: 50%;
+            }
+            100% {
+            opacity: 0;
+            top: 29%;
+            }
+          }
+           .scroll-btn {
+            display: block;
+            position: absolute;
+            bottom:10%;
+            left: 0;
+            right: 0;
+            text-align: center;
+          }
+          .scroll-btn > * {
+            display: inline-block;
+            line-height: 18px;
+            font-size: 13px;
+            font-weight: normal;
+            color: #7f8c8d;
+            color: #232323;
+            font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            letter-spacing: 2px;
+          }
+          .scroll-btn > *:hover,
+          .scroll-btn > *:focus,
+          .scroll-btn > *.active {
+            color: #232323;
+          }
+          .scroll-btn > *:hover,
+          .scroll-btn > *:focus,
+          .scroll-btn > *:active,
+          .scroll-btn > *.active {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+          }
+          .scroll-btn .mouse {
+            position: relative;
+            display: block;
+            width: 35px;
+            height: 55px;
+            margin: 0 auto 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 3px solid #232323;
+            border-radius: 23px;
+          }
+          .scroll-btn .mouse > * {
+            position: absolute;
+            display: block;
+            top: 29%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            margin: -4px 0 0 -4px;
+            background: #232323;
+            border-radius: 50%;
+            -webkit-animation: ani-mouse 2.5s linear infinite;
+            -moz-animation: ani-mouse 2.5s linear infinite;
+            animation: ani-mouse 2.5s linear infinite;
+          }
+        `}
+      </style>
       <section
-        className="w-full h-[746px] min-[751px]:h-[1194px] min-[1001px]:h-[1402px] bg-[url('/assets/gradientTwo.png')] bg-cover relative min-[751px]:mb-[82px] min-[1001px]:mb-[88px] overflow-hidden"
+        className="w-full h-[746px] min-[751px]:h-[1194px] min-[1001px]:h-[1402px] bg-cover relative min-[751px]:mb-[82px] min-[1001px]:mb-[88px] overflow-hidden"
         data-hero-section
       >
         <div
-          className="absolute top-0 left-0 w-full h-[31.3vh] min-[751px]:w-[55%] min-[751px]:h-[726px] min-[1001px]:w-[52%] min-[1001px]:h-[729px] bg-[#5bb69a40] backdrop-blur-[20px] -webkit-backdrop-blur-[20px] rounded-[10px] border-0 border-[rgba(255, 255, 255, 0.18)] z-30"
+          className="absolute top-0 left-0 w-full h-[31.3vh] min-[751px]:w-[55%] min-[751px]:h-[726px] min-[1001px]:w-[52%] min-[1001px]:h-[729px] bg-[#329b89] backdrop-blur-[20px] -webkit-backdrop-blur-[20px] border-0 border-[rgba(255, 255, 255, 0.18)] z-30"
           data-box-decorative
         ></div>
         <div
-          className="w-full h-[31.3vh] min-[751px]:h-[726px] min-[1001px]:h-[729px] flex items-center min-[751px]:border-r-[10px] border-[#fefcf5]"
-          style={{ borderRadius: "0 10px 0 0" }}
+          className="w-full h-[31.3vh] min-[751px]:h-[726px] min-[1001px]:h-[729px] bg-[#e5e5e5] flex items-center min-[751px]:border-r-[10px] border-[#fefcf5]"
+          style={{ borderBottom: "1px solid #232323" }}
           data-box-decorative
         >
-          <h1 className="text-black w-[90%] text-center min-[751px]:text-left text-[8vw] min-[500px]:text-[6vw] min-[600px]:text-[5vw] mx-[5%] absolute z-40">
+          <h1
+            className="w-[90%] text-center text-transparent min-[751px]:text-left text-[8vw] min-[500px]:text-[6vw] min-[600px]:text-[5vw] mx-[5%] absolute z-40"
+            id="hero-text"
+          >
             DON&apos;T CHASE TRENDS. SET THEM.
           </h1>
         </div>
         <div
-          className={`w-full h-[664px] min-[751px]:h-[686px] ${!modelLoaded
-            ? `bg-[#00000000]`
-            : `bg-[url('/assets/interactionLoadingImage.png')]`
-            } bg-center bg-no-repeat absolute bottom-0 left-0 z-0`}
+          id="seprator"
+          className="w-full h-[1px] bg-[#232323] absolute left-0 top-[31.3vh] min-[751px]:top-[726px] min-[1001px]:top-[729px] z-40"
+        ></div>
+        <div id="scroll-down-animation">
+        <span className={`scroll-btn z-40`} style={pageScrolled ? {display:"none"} : {}}>
+            <a href="#">
+              <span className="mouse">
+                <span></span>
+              </span>
+            </a>
+            <p className="-ml-[50px]">scroll me</p>
+          </span>
+        </div>
+        <div
+          className={`w-full h-[664px] min-[751px]:h-[686px] ${
+            modelLoaded
+              ? `bg-[#e5e5e5]`
+              : `bg-[url('/assets/interactionLoadingImage.png')]`
+          } bg-center bg-no-repeat absolute bottom-0 left-0 z-0`}
           style={{
             borderLeft: "10px solid #fefcf5",
             borderRight: "10px solid #fefcf5",
           }}
           data-model-container
         >
+          {!modelLoaded && (
+            <div className="w-full h-full absolute top-0 left-0 flex justify-center items-center">
+              <div className="progress-loader">
+                <div className="progress"></div>
+              </div>
+            </div>
+          )}
           <Spline
-            scene="https://prod.spline.design/id7vFoL264ZfOGPl/scene.splinecode"
+            scene="https://prod.spline.design/TPBxdOYqRTuCKy1W/scene.splinecode"
             className="absolute z-10"
             onLoad={() => {
               setTimeout(() => {
-                setModelLoaded(false);
+                setModelLoaded(true);
               }, 1000);
             }}
           />
@@ -177,29 +385,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 30
                     : viewportWidth > 1000
-                      ? 0
-                      : 75,
+                    ? 0
+                    : 75,
               }}
               animate={
                 featuredWorkOneContentInView
                   ? {
-                    opacity: 1,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? -70
-                        : viewportWidth > 1000
+                      opacity: 1,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? -70
+                          : viewportWidth > 1000
                           ? -100
                           : -25,
-                  }
+                    }
                   : {
-                    opacity: 0,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? 30
-                        : viewportWidth > 1000
+                      opacity: 0,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? 30
+                          : viewportWidth > 1000
                           ? 0
                           : 75,
-                  }
+                    }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[30px] min-[751px]:w-[55%] min-[1001px]:w-[50%] min-[751px]:-translate-y-[80px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:-translate-y-[70%] leading-[0.9em]"
@@ -281,29 +489,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 120
                     : viewportWidth > 1000
-                      ? 140
-                      : 80,
+                    ? 140
+                    : 80,
               }}
               animate={
                 featuredWorkThreeContentInView
                   ? {
-                    opacity: 1,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? 20
-                        : viewportWidth > 1000
+                      opacity: 1,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? 20
+                          : viewportWidth > 1000
                           ? 40
                           : -20,
-                  }
+                    }
                   : {
-                    opacity: 0,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? 120
-                        : viewportWidth > 1000
+                      opacity: 0,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? 120
+                          : viewportWidth > 1000
                           ? 140
                           : 80,
-                  }
+                    }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[20px] min-[751px]:w-[70%] min-[751px]:translate-y-[25px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:translate-y-[80%] leading-[0.9em]"
@@ -387,29 +595,29 @@ export default function Home() {
                   viewportWidth > 750 && viewportWidth < 1001
                     ? 120
                     : viewportWidth > 1000
-                      ? 140
-                      : 80,
+                    ? 140
+                    : 80,
               }}
               animate={
                 featuredWorkFiveContentInView
                   ? {
-                    opacity: 1,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? 20
-                        : viewportWidth > 1000
+                      opacity: 1,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? 20
+                          : viewportWidth > 1000
                           ? 40
                           : -20,
-                  }
+                    }
                   : {
-                    opacity: 0,
-                    y:
-                      viewportWidth > 750 && viewportWidth < 1001
-                        ? 120
-                        : viewportWidth > 1000
+                      opacity: 0,
+                      y:
+                        viewportWidth > 750 && viewportWidth < 1001
+                          ? 120
+                          : viewportWidth > 1000
                           ? 140
                           : 80,
-                  }
+                    }
               }
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-[45%] min-[501px]:w-[40%] min-[501px]:-translate-y-[20px] min-[751px]:w-[70%] min-[751px]:translate-y-[25px] text-black text-[8vw] font-[300] min-[501px]:text-[6vw] min-[751px]:text-[4.5vw] min-[1001px]:text-[4vw] min-[1001px]:translate-y-[30%] leading-[0.9em]"
@@ -440,10 +648,22 @@ export default function Home() {
             className="w-full"
           />
         </div>
-      </section> 
+      </section>
       <section className="w-full h-full bg-[#fefcf5]">
         <div className="w-full h-[460vh] relative">
-          <motion.h2 ref={selectedClientsRef} className="text-center leading-[1.2em] tracking-[0.06em] mt-[48px] text-[7vw] sticky top-14 min-[751px]:top-16 min-[1001px]:top-20" initial={{ opacity: 0, scale: 0.9 }} animate={emailBannerInView ? { opacity: 0, scale: 0.9 } : selectedClientsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }} transition={{ duration: 0.5 }}>
+          <motion.h2
+            ref={selectedClientsRef}
+            className="text-center leading-[1.2em] tracking-[0.06em] mt-[48px] text-[7vw] sticky top-14 min-[751px]:top-16 min-[1001px]:top-20"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={
+              emailBannerInView
+                ? { opacity: 0, scale: 0.9 }
+                : selectedClientsInView
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 0.9 }
+            }
+            transition={{ duration: 0.5 }}
+          >
             SELECTED CLIENTS
           </motion.h2>
           <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
@@ -453,7 +673,9 @@ export default function Home() {
               alt=""
             />
             <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
-              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-1">CLIENT ONE</h3>
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-1">
+                CLIENT ONE
+              </h3>
             </div>
           </div>
           <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
@@ -463,7 +685,9 @@ export default function Home() {
               alt=""
             />
             <div className="h-[30vw] min-[751px]:w-[30%] min-[751px]:h-[16vw] min-[1001px]:w-[20%] min-[1001px]:h-[11vw] grid grid-rows-5">
-              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-2">CLIENT TWO</h3>
+              <h3 className="col-start-1 text-[7vw] min-[601px]:text-[5vw] min-[751px]:text-[3vw] min-[1001px]:text-[2vw] text-center min-[751px]:text-left row-start-2">
+                CLIENT TWO
+              </h3>
             </div>
           </div>
           <div className="w-full h-70vh my-32 min-[751px]:my-44 min-[1001px]:my-52 flex flex-col gap-20 min-[1001px]:gap-40 justify-end items-center min-[751px]:flex-row min-[751px]:justify-center sticky top-48 min-[751px]:top-64 min-[1001px]:top-[20rem]">
@@ -505,7 +729,7 @@ export default function Home() {
         </div>
       </section>
       <section ref={emailBannerRef} className="w-full h-fit">
-        <Footer/>
+        <Footer />
       </section>
     </main>
   );
