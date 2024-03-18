@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useParallax } from "react-scroll-parallax";
 import Footer from "@/components/footer/Footer";
 import { Span } from "next/dist/trace";
+import List from "./components/List";
 
 export default function Home() {
   const [viewportWidth, setViewportWidth] = useState(
@@ -510,6 +511,12 @@ export default function Home() {
             className="w-full"
           />
         </div>
+      </section>
+      <section className="w-full h-auto">
+        <ul className="relative">
+          <List />
+          <List />
+        </ul>
       </section>
       <section className="w-full h-full bg-[#f3f3f3]">
         <div className="w-full h-[460vh] relative">
