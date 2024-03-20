@@ -135,11 +135,22 @@ const Header = () => {
         }`}
       </style>
       <div
-        className="text-black w-[40%] min-[751px]:w-[20%] h-auto"
+        className="text-black h-auto"
         data-sidheshwar-logo
       >
-        <Link href="/">
-          <Image src="/assets/sidheshwarlogo.png" alt="Sidheshwar" width={100} height={100} className="w-[100px] min-[751px]:w-[120px] min-[1001px]:w-[150px]" />
+        <Link href="/" className="flex flex-col justify-center items-center">
+          <Image src="/assets/mainLogo2.png" alt="Sidheshwar" width={100} height={100} className="w-[100px] min-[751px]:w-[120px] min-[1001px]:w-[40px]" />
+          {/* <Image src="/assets/sidheshwarlogo.png" alt="Sidheshwar" width={100} height={100} className="w-[100px] min-[751px]:w-[120px] min-[1001px]:w-[150px]" /> */}
+        </Link>
+      </div>
+      <div></div>
+      <div
+        className="text-black h-auto pl-[22.6%]"
+        data-sidheshwar-logo
+      >
+        <Link href="/" className="flex flex-col justify-center items-center">
+          <Image src="/assets/sidheshwarlogo3.png" alt="Sidheshwar" width={100} height={100} className="w-[100px] min-[751px]:w-[120px] min-[1001px]:w-[150px]" />
+          {/* <Image src="/assets/sidheshwarlogo.png" alt="Sidheshwar" width={100} height={100} className="w-[100px] min-[751px]:w-[120px] min-[1001px]:w-[150px]" /> */}
         </Link>
       </div>
       <div id="scroll-down-animation">
@@ -152,7 +163,7 @@ const Header = () => {
           <p className="-ml-[50px]">scroll me</p>
         </span>
       </div>
-      <div className="text-[#232323] w-[40%] min-[751px]:w-[20%] h-auto text-right text-[1.5em] min-[751px]:text-[1.8em] min-[1001px]:text-[2em]">
+      <div className="text-[#329b89] w-[40%] min-[751px]:w-[20%] h-auto text-right text-[1.5em] min-[751px]:text-[1.8em] min-[1001px]:text-[2em]">
         Menu
       </div>
 
