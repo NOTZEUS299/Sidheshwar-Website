@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
-const List = () => {
+const List = ({ props }: { props: { imgUrl: string, index: number, title: string, des: string } }) => {
     const [tiltDirection, setTiltDirection] = useState<'left' | 'right' | 'none'>('none')
     const [cursorSpeed, setCursorSpeed] = useState<number>(0) // Add cursor speed state
     const listItemOneRef = useRef<HTMLLIElement>(null)
@@ -55,10 +55,10 @@ const List = () => {
                 initial={{ translateX: '-50%', translateY: '-200%', opacity: 0 }}
                 animate={{ rotate: tiltDirection === 'left' ? -(Math.ceil(cursorSpeed) - 1) * 20 : tiltDirection === 'right' ? (Math.ceil(cursorSpeed) - 1) * 20 : 0, opacity: listImgOneOpacity }}
                 transition={{ opacity: 1, duration: 0.2, type: 'keyframes' }}
-                src={'/assets/gradientThree.jpg'} alt='' />
-            <h2 className='text-[2.5vw] text-[#232323] opacity-50'>1</h2>
-            <h2 className='text-[2.5vw] text-[#232323] opacity-50'>Graphic Design ~ Ui/Ux</h2>
-            <p className='w-[30%] text-[#232323] opacity-60'>Maxime aut odit reprehenderit atque accusantium corporis dolorem qui eius voluptatibus fuga, earum tempora corrupti et? Eveniet, molestiae quaerat!</p>
+                src={props.imgUrl} alt='' />
+            <h2 className='text-[2.5vw] text-[#232323] opacity-50'>{props.index}</h2>
+            <h2 className='text-[2.5vw] text-[#232323] opacity-50'>{props.title}</h2>
+            <p className='w-[30%] text-[#232323] opacity-60'>{props.des}</p>
             <h2 className='text-[3vw] text-[#232323] opacity-50'>↗</h2>
         </li>
     )
