@@ -514,8 +514,8 @@ export default function Home() {
       </section>
       <section className="w-full h-auto">
         <ul className="relative">
-          <List />
-          <List />
+          <List props={{ imgUrl: "/assets/gradientThree.jpg", index: 1, title: "Graphic Design ~ Ui/Ux", des: "Maxime aut odit reprehenderit atque accusantium corporis dolorem qui eius voluptatibus fuga, earum tempora corrupti et? Eveniet, molestiae quaerat!" }} />
+          <List props={{ imgUrl: "/assets/gradientOne.jpg", index: 2, title: "Graphic Design ~ Ui/Ux", des: "Maxime aut odit reprehenderit atque accusantium corporis dolorem qui eius voluptatibus fuga, earum tempora corrupti et? Eveniet, molestiae quaerat!" }} />
         </ul>
       </section>
       <section className="w-full h-full bg-[#f3f3f3]">
