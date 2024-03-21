@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [pageScrolled, setPageScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleOnScroll = () => {
@@ -132,7 +133,30 @@ const Header = () => {
           -webkit-animation: ani-mouse 2.5s linear infinite;
           -moz-animation: ani-mouse 2.5s linear infinite;
           animation: ani-mouse 2.5s linear infinite;
-        }`}
+        }
+        #header-navigation-menu{
+          background: #329b8920;
+          backdrop-filter: blur(8px);
+          right:10px;
+          border: 1px solid rgba(255, 255, 255, 0.274);
+          border-top: none;
+          box-shadow: 0 15px 20px rgba(0, 0, 0, 0.082);
+          transform-origin:top right;
+          transform: rotate(-90deg);
+          animation: menu-entry-ani .5s linear 1 forwards;
+        }
+        @keyframes menu-entry-ani{
+          0%{
+            opacity:0
+          }
+          1%{
+            opacity:1
+          }
+          100%{
+            transform:rotate(0);
+          }
+        }
+        `}
       </style>
       <div
         className="text-black h-auto"
@@ -163,9 +187,12 @@ const Header = () => {
           <p className="-ml-[50px]">scroll me</p>
         </span>
       </div>
-      <div className="text-[#329b89] w-[40%] min-[751px]:w-[20%] h-auto text-right text-[1.5em] min-[751px]:text-[1.8em] min-[1001px]:text-[2em]">
+      <div className="text-[#329b89] w-[40%] min-[751px]:w-[20%] h-auto text-right text-[1.5em] min-[751px]:text-[1.8em] min-[1001px]:text-[2em] cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         Menu
       </div>
+
+      {isOpen && <div id="header-navigation-menu" className="w-full min-[751px]:w-[55vw] h-[40vh] fixed top-[48px] min-[751px]:top-[56px] min-[1001px]:top-[82px]">
+      </div>}
 
     </header>
   );
